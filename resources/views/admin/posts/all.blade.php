@@ -6,7 +6,7 @@
 <thead>
 <tr>
     <th scope="col">#</th>
-    <th scope="col">Name</th>
+    <th scope="col">image</th>
     <th scope="col">Title</th>
     <th scope="col">Descreption</th>
     <th scope="col">Controls</th>
@@ -17,6 +17,7 @@
 @foreach ($posts as $post)
 <tr>
     <td scope="row">{{$post->id}}</td>
+    <td><img src="{{URL::asset('img')}}/{{$post->image}}" alt=""></td>
     <td>{{$post->author}}</td>
     <td>{{$post->title}}</td>
     <td>{{$post->discerption}}</td>

@@ -43,11 +43,15 @@ return view('admin.posts.all',compact('posts'));
      */
     public function store(Request $request)
     {
+        $image=$request->file('image');
+        $postImage=Time() . "_" . $image->getClientOriginalName();
+        $image->move('img',$postImage);
         Post::create([
             'title'=>$request->title,
             'discerption'=>$request->discerption,
             'author'=>Auth::user()->name,
             'user_id'=>Auth::user()->id,
+            'image'=>$postImage
         ]);
         $posts=Post::all();
         return view('admin.posts.all',compact('posts'));
