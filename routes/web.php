@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\PostsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,10 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[PostsController::class, 'showPosts']);
 
+Route::get('/post',[PostsController::class, 'showPost']);
+
+Route::get('/olderpost',function(){
+    return"hello from older post";
+})->middleware('auth')->name('olderpost');
 
 Route::get('/student/{id}', function($id){
     return $id;
@@ -23,3 +28,4 @@ Route::get('/student/{id}', function($id){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
